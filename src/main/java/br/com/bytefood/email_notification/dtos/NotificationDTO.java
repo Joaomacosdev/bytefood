@@ -29,10 +29,10 @@ public class NotificationDTO {
     private String body;
 
     @Enumerated(EnumType.STRING)
-    private NotificationType notificationType;
+    private NotificationType type;
 
     private LocalDateTime createdAt;
 
-    private Boolean isHtml;
+    private boolean isHtml;
 
 }

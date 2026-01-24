@@ -31,9 +31,9 @@ public class Notification {
     private String body;
 
     @Enumerated(EnumType.STRING)
-    private NotificationType notificationType;
+    private NotificationType type;
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    private Boolean isHtml;
+    private boolean isHtml;
 }

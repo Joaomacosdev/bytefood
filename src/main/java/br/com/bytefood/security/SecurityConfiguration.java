@@ -37,7 +37,7 @@ public class SecurityConfiguration {
                 .sessionManagement(sm -> sm.sessionCreationPolicy(STATELESS))
                 .authorizeHttpRequests(
                         req -> {
-                            req.requestMatchers( "/api/auth/**", "/api/categories/**", "/api/reviews/**").permitAll().anyRequest().authenticated();
+                            req.requestMatchers( "/api/roles/**","/api/auth/**", "/api/categories/**", "/api/reviews/**").permitAll().anyRequest().authenticated();
                         })
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(ex -> ex
