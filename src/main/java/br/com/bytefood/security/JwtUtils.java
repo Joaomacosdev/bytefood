@@ -39,12 +39,15 @@ public class JwtUtils {
         this.key = new SecretKeySpec(keyByte, "HmacSHA256");
     }
 
-    public String generateToke(User user){
+    public String generateToke(String user){
+
+        User user1 = new User();
+
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer(issuer)
-                    .withSubject(user.getEmail())
+                    .withSubject(user1.getEmail())
                     .withExpiresAt(dateExpiration(expirationDays))
                     .sign(algorithm);
         } catch (JWTCreationException exception){

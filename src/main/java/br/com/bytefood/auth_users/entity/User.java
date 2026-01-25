@@ -26,7 +26,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
+    private String name;
     @Column(unique = true, nullable = false)
     private String email;
 
@@ -38,7 +38,7 @@ public class User {
     private String phoneNumber;
     private String profileUrl;
     private String address;
-    private Boolean isActive;
+    private boolean isActive;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
