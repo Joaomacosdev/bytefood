@@ -34,5 +34,5 @@ public class OrderItem {
 
     private BigDecimal pricePerUnit;
 
-    private BigDecimal subTotal;
+    private BigDecimal subtotal;
 }

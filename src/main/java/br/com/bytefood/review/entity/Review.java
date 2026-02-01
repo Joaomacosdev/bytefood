@@ -31,7 +31,7 @@ public class Review {
     @Column(columnDefinition = "TEXT")
     private String comment;
 
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "order_id")
     private Long orderId;

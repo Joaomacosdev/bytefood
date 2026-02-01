@@ -37,9 +37,9 @@ public class PaymentDTO {
 
     private PaymentGateway paymentGateway;
 
-    private String failureReasons;
+    private String failureReason;
 
-    private Boolean success;
+    private boolean success;
 
     private LocalDateTime paymentDate;
 
