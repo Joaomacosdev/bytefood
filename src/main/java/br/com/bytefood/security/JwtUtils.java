@@ -41,13 +41,12 @@ public class JwtUtils {
 
     public String generateToke(String user){
 
-        User user1 = new User();
 
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
                     .withIssuer(issuer)
-                    .withSubject(user1.getEmail())
+                    .withSubject(user)
                     .withExpiresAt(dateExpiration(expirationDays))
                     .sign(algorithm);
         } catch (JWTCreationException exception){

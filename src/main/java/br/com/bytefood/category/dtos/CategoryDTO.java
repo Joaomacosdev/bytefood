@@ -10,6 +10,8 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CategoryDTO {
 
+    private Long id;
+
     @NotBlank(message = "name is requeired")
     private String name;
 
