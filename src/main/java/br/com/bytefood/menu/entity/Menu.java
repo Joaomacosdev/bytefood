@@ -24,6 +24,7 @@ public class Menu {
     @GeneratedValue
     private Long id;
 
+    private String name;
     private String description;
 
     private BigDecimal price;
