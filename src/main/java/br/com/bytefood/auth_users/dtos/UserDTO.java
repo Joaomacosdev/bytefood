@@ -23,7 +23,7 @@ public class UserDTO {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    private Boolean isActive;
+    private boolean isActive;
 
     private String address;
 

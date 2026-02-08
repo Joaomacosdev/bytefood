@@ -99,7 +99,7 @@ public class OrderServiceImpl implements OrderService {
                     .menu(cartItem.getMenu())
                     .quantity(cartItem.getQuantity())
                     .pricePerUnit(cartItem.getPricePerUnit())
-                    .subtotal(cartItem.getSubTotal())
+                    .subtotal(cartItem.getSubtotal())
                     .build();
             orderItems.add(orderItem);
             totalAmount = totalAmount.add(orderItem.getSubtotal());

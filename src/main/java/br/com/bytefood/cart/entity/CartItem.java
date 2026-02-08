@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "car_items")
+@Table(name = "cart_items")
 @Data
 @Builder
 @AllArgsConstructor
@@ -33,6 +33,6 @@ public class CartItem {
 
     private BigDecimal pricePerUnit;
 
-    private BigDecimal subTotal;
+    private BigDecimal subtotal;
 
 }

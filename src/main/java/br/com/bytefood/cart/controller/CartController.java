@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/carts")
+@RequestMapping("/api/cart")
 @RequiredArgsConstructor
 public class CartController {
 
@@ -37,7 +37,7 @@ public class CartController {
 
     @GetMapping
     public ResponseEntity<Response<CartDTO>> getShoppingItem(){
-        return ResponseEntity.ok(cartService.getShoppingItem());
+        return ResponseEntity.ok(cartService.getShoppingCart());
     }
 
 

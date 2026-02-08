@@ -63,7 +63,7 @@ public class CartServiceImpl implements CartService {
         if (optionalCartItem.isPresent()) {
             CartItem cartItem = optionalCartItem.get();
             cartItem.setQuantity(cartItem.getQuantity() + quantity);
-            cartItem.setSubTotal(cartItem.getPricePerUnit().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
+            cartItem.setSubtotal(cartItem.getPricePerUnit().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
             cartItemRepository.save(cartItem);
         } else {
             CartItem newCartItem = CartItem.builder()
@@ -71,7 +71,7 @@ public class CartServiceImpl implements CartService {
                     .menu(menu)
                     .quantity(quantity)
                     .pricePerUnit(menu.getPrice())
-                    .subTotal(menu.getPrice().multiply(BigDecimal.valueOf(quantity)))
+                    .subtotal(menu.getPrice().multiply(BigDecimal.valueOf(quantity)))
                     .build();
 
             cart.getCartItems().add(newCartItem);
@@ -102,7 +102,7 @@ public class CartServiceImpl implements CartService {
         int newQuantity = cartItem.getQuantity() + 1;
 
         cartItem.setQuantity(newQuantity);
-        cartItem.setSubTotal(cartItem.getPricePerUnit().multiply(BigDecimal.valueOf(newQuantity)));
+        cartItem.setSubtotal(cartItem.getPricePerUnit().multiply(BigDecimal.valueOf(newQuantity)));
 
         cartItemRepository.save(cartItem);
 
@@ -130,7 +130,7 @@ public class CartServiceImpl implements CartService {
 
         if (newQuantity > 0) {
             cartItem.setQuantity(newQuantity);
-            cartItem.setSubTotal(cartItem.getPricePerUnit().multiply(BigDecimal.valueOf(newQuantity)));
+            cartItem.setSubtotal(cartItem.getPricePerUnit().multiply(BigDecimal.valueOf(newQuantity)));
             cartItemRepository.save(cartItem);
         } else {
             cart.getCartItems().remove(cartItem);
@@ -168,27 +168,29 @@ public class CartServiceImpl implements CartService {
 
     @Override
     @Transactional(readOnly = true)
-    public Response<CartDTO> getShoppingItem() {
-        log.info("Inside getShoppingItem()");
+    public Response<CartDTO> getShoppingCart() {
+        log.info("Inside getShoppingCart()");
 
         User user = userService.getCurrentLoggedInUser();
 
         Cart cart = cartRepository.findByUser_Id(user.getId())
-                .orElseThrow(() -> new NotFoundException("cart not found in cart"));
+                .orElseThrow(() -> new NotFoundException("Cart not found for user"));
 
         List<CartItem> cartItems = cart.getCartItems();
 
         CartDTO cartDTO = modelMapper.map(cart, CartDTO.class);
 
+        // Calculate total amount
         BigDecimal totalAmount = BigDecimal.ZERO;
-        if (cartItems != null) {
+        if (cartItems != null) { // Add null check here
             for (CartItem item : cartItems) {
-                totalAmount = totalAmount.add(item.getSubTotal());
+                totalAmount = totalAmount.add(item.getSubtotal());
             }
         }
 
-        cartDTO.setTotalAmount(totalAmount);
+        cartDTO.setTotalAmount(totalAmount); //set the totalAmount
 
+        //remove the review from the response
         if (cartDTO.getCartItems() != null) {
             cartDTO.getCartItems()
                     .forEach(item -> item.getMenu().setReviews(null));
@@ -196,9 +198,10 @@ public class CartServiceImpl implements CartService {
 
         return Response.<CartDTO>builder()
                 .statusCode(HttpStatus.OK.value())
-                .message("Item get Shopping Item  successfully")
+                .message("Shopping cart retrieved successfully")
                 .data(cartDTO)
                 .build();
+
     }
 
     @Override

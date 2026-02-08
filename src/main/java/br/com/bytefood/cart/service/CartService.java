@@ -9,7 +9,7 @@ public interface CartService {
     Response<?> incrementItem(Long menuId);
     Response<?> decrementItem(Long menuId);
     Response<?> removeItem(Long cartItemId);
-    Response<CartDTO> getShoppingItem();
+    Response<CartDTO> getShoppingCart();
     Response<?> clearShoppingCart();
 
 }

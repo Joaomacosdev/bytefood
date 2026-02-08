@@ -30,6 +30,9 @@ public class MenuDTO {
     @Positive
     private BigDecimal price;
 
+    private String imageUrl;
+
+
     @NotNull(message = "category ID is required")
     private Long categoryId;
 

@@ -1,4 +1,4 @@
-package br.com.bytefood.auth_users.controller;
+package br.com.bytefood.menu.controller;
 
 import br.com.bytefood.menu.dtos.MenuDTO;
 import br.com.bytefood.menu.service.MenuService;
@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/menus")
+@RequestMapping("/api/menu")
 @RequiredArgsConstructor
 public class MenuController {
 
